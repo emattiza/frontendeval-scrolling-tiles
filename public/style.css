@@ -7,18 +7,30 @@ body {
 }
 
 .main-container {
-  @apply grid grid-cols-1 gap-1
+  @apply grid grid-cols-3 gap-1 grid-flow-row-dense
 }
 
 .main-container > h1 {
-  @apply mx-auto
+  @apply mx-auto col-span-3
 }
 
 
 .show-scroller {
-  @apply col-span-1 mx-auto
+  @apply col-span-3 mx-auto grid grid-cols-4 grid-flow-row items-center
 }
 
 .focused-photo {
-  @apply col-span-1 mx-auto
+  @apply col-span-4 mx-auto rounded-lg p-1
+}
+
+.show-scroller img {
+  @apply rounded-lg w-fit max-h-screen hover:cursor-pointer p-1
+}
+
+.control-container {
+  @apply col-span-4 mx-auto
+}
+
+.control-container button {
+  @apply btn btn-primary
 }
