@@ -5,3 +5,20 @@
 body {
   box-sizing: border-box;
 }
+
+.main-container {
+  @apply grid grid-cols-1 gap-1
+}
+
+.main-container > h1 {
+  @apply mx-auto
+}
+
+
+.show-scroller {
+  @apply col-span-1 mx-auto
+}
+
+.focused-photo {
+  @apply col-span-1 mx-auto
+}

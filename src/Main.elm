@@ -1,9 +1,9 @@
 module Main exposing (main)
 
 import Browser
-import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick)
+import Html exposing (Attribute, Html, div, text)
 import Html.Attributes exposing (class)
+import Html exposing (h1)
 
 
 type alias Model =
@@ -32,11 +32,46 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [class "btn-group"]
-        [ button [ class "btn btn-lg", onClick Increment ] [ text "+1" ]
-        , div [] [ text <| String.fromInt model.count ]
-        , button [ class "btn btn-lg", onClick Decrement ] [ text "-1" ]
+    div [ class "main-container", class "container" ]
+        [ h1 [] [text "A Kitty and Puppy Scroller"]
+        , viewShowScroller Puppy model
+        , viewShowScroller Kitty model
+        , div [ class "focused-photo" ] [ text "Active Photo" ]
         ]
+
+
+type ScrollerContentType
+    = Kitty
+    | Puppy
+
+
+toString : ScrollerContentType -> String
+toString contentType =
+    case contentType of
+        Kitty ->
+            "Kitty"
+
+        Puppy ->
+            "Puppy"
+
+
+toClass : ScrollerContentType -> Attribute Msg
+toClass contentType =
+    case contentType of
+        Kitty ->
+            class "kitty-scroller"
+
+        Puppy ->
+            class "puppy-scroller"
+
+
+viewShowScroller : ScrollerContentType -> Model -> Html Msg
+viewShowScroller contentType _ =
+    div
+        [ class "show-scroller"
+        , toClass contentType
+        ]
+        [ text <| "First Row of " ++ toString contentType ++ " Photos" ]
 
 
 main : Program () Model Msg
